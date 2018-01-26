@@ -2,7 +2,7 @@ package vraag1;
 
 public class WinkelApp {
 	public static void main(String[] args) {
-		System.out.printf("Oplossing van %s %s\n", "Jouw naam ", "Student PXL");
+		System.out.printf("Oplossing van %s %s\n", "Goris Joachim", "Student PXL");
 
 		Bestelling bestelling = new Bestelling();
 		Product[] lijst = Data.artikels;

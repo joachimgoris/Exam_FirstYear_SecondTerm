@@ -53,7 +53,6 @@ public class Bestelling implements Berekenbaar {
 	}
 
 	public void toonPerMerk(String merk) {
-		System.out.println("Van het merk " + merk + ":");
 		for (Product product : arrProduct) {
 			if (product != null) {
 				if (product.getMerk().equals(merk)) {
@@ -66,7 +65,6 @@ public class Bestelling implements Berekenbaar {
 	}
 
 	public void toonParfums() {
-		System.out.println("Alle Parfums:");
 		for (Product product : arrProduct) {
 			if (product != null) {
 				if (product.getClass().equals(Parfum.class)) {
