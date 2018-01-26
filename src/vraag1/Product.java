@@ -6,13 +6,13 @@ public abstract class Product {
 	private String naam;
 	private int volume;
 	private double prijs;
-	
-	public Product(int PN, String m, String n, int v, double p) {
-		setProductNummer(PN);
-		setMerk(m);
-		setNaam(n);
-		setVolume(v);
-		setPrijs(p);
+
+	public Product(int productNummer, String merk, String naam, int volume, double prijs) {
+		setProductNummer(productNummer);
+		setMerk(merk);
+		setNaam(naam);
+		setVolume(volume);
+		setPrijs(prijs);
 	}
 
 	public int getProductNummer() {
@@ -54,20 +54,23 @@ public abstract class Product {
 	public void setPrijs(double prijs) {
 		this.prijs = prijs;
 	}
-	
+
 	public String getProductCode() {
 		String retvalue = "";
-		retvalue += getMerk().substring(0, 2)+getNaam().substring(0, 2)+getVolume();
+		retvalue += getMerk().substring(0, 2) + getNaam().substring(0, 2) + getVolume();
 		retvalue = retvalue.toUpperCase();
 		retvalue.replace(' ', '_');
 		return retvalue;
 	}
-	
-	public boolean equals(Product p) {
-		if(this.getMerk() == p.getMerk()&& this.getNaam()==p.getNaam()&&this.getVolume()==p.getVolume()) {
+
+	@Override
+	public boolean equals(Object object) {
+		if ((object != null) && (this.getClass() == object.getClass())
+				&& (((Product) object).getMerk().equals(this.getMerk())) &&
+				(((Product) object).getNaam().equals(this.getNaam()))
+				&& (((Product) object).getVolume() == this.getVolume()))
 			return true;
-		} else {
+		else
 			return false;
-		}
 	}
 }

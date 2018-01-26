@@ -4,55 +4,50 @@ public class Bestelling implements Berekenbaar {
 	private Product[] arrProduct = new Product[100];
 	private int productNummer = 1000;
 
-	public Bestelling() {
-		vulArray();
-	}
-
-	public void vulArray() {
-		for (int i = 0; i < arrProduct.length; i++) {
-			arrProduct[i] = new Deodorant(0, null, null, productNummer, productNummer, null);
-		}
-
-	}
+	public Bestelling() { }
 
 	public void voegProductToe(Product p) throws IllegalArgumentException {
 		boolean alToegevoegd = false;
 		for (Product product : arrProduct) {
-			if (product.getMerk() == p.getMerk() && product.getNaam() == p.getNaam()
-					&& product.getVolume() == p.getVolume()) {
-				alToegevoegd = true;
+			if (product != null) {
+				if (product.equals(p)) {
+					alToegevoegd = true;
+				}
 			}
 		}
-		if (alToegevoegd == false) {
+		if (!alToegevoegd) {
 			arrProduct[productNummer - 1000] = p;
 			productNummer++;
 		} else {
-			System.out.println("Dit product is reeds toegevoegd.");
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Dit product is reeds toegevoegd.");
 		}
 
 	}
 
-	public void verwijderProduct(int pN) {
+	public void verwijderProduct(int productNummer) {
 		boolean aanwezig = false;
 		for (Product product : arrProduct) {
-			if (product.getMerk() != "" && product.getMerk() != null)
-				aanwezig = true;
+			if (product != null) {
+				if (!product.getMerk().equals("") && !product.getMerk().equals(null))
+					aanwezig = true;
+			}
 		}
 		if (aanwezig == true) {
-			arrProduct[pN] = new Deodorant(0, null, null, pN, pN, null);
-			System.out.println("Product met productnummer " + pN + " werd verwijderd.");
+			arrProduct[productNummer] = new Deodorant(0, null, null, productNummer, productNummer, null);
+			System.out.println("Product met productnummer " + productNummer + " werd verwijderd.");
 		} else {
-			System.out.println("Er is geen product gevonden met productnummer " + pN + ".");
+			System.out.println("Er is geen product gevonden met productnummer " + productNummer + ".");
 		}
 	}
 
 	public void toonLijst() {
 		for (Product product : arrProduct) {
-			if (product.getMerk() != "" && product.getMerk() != null) {
-				System.out.println(product.getProductNummer() + "\tMerk: " + product.getMerk() + "\tNaam: "
-						+ product.getNaam() + "\tVolume: " + product.getVolume() + "\tPrijs: " + product.getPrijs()
-						+ "\tCode: " + product.getProductCode() + "\n");
+			if (product != null) {
+				if (!product.getMerk().equals("") && !product.getMerk().equals(null)) {
+					System.out.println(product.getProductNummer() + "\tMerk: " + product.getMerk() + "\tNaam: "
+							+ product.getNaam() + "\tVolume: " + product.getVolume() + "\tPrijs: " + product.getPrijs()
+							+ "\tCode: " + product.getProductCode() + "\n");
+				}
 			}
 		}
 	}
@@ -60,10 +55,12 @@ public class Bestelling implements Berekenbaar {
 	public void toonPerMerk(String merk) {
 		System.out.println("Van het merk " + merk + ":");
 		for (Product product : arrProduct) {
-			if (product.getMerk() == merk) {
-				System.out.println(product.getProductNummer() + "\tMerk: " + product.getMerk() + "\tNaam: "
-						+ product.getNaam() + "\tVolume: " + product.getVolume() + "\tPrijs: " + product.getPrijs()
-						+ "\tCode: " + product.getProductCode() + "\n");
+			if (product != null) {
+				if (product.getMerk().equals(merk)) {
+					System.out.println(product.getProductNummer() + "\tMerk: " + product.getMerk() + "\tNaam: "
+							+ product.getNaam() + "\tVolume: " + product.getVolume() + "\tPrijs: " + product.getPrijs()
+							+ "\tCode: " + product.getProductCode() + "\n");
+				}
 			}
 		}
 	}
@@ -71,10 +68,12 @@ public class Bestelling implements Berekenbaar {
 	public void toonParfums() {
 		System.out.println("Alle Parfums:");
 		for (Product product : arrProduct) {
-			if (product.getClass().equals(Parfum.class)) {
-				System.out.println(product.getProductNummer() + "\tMerk: " + product.getMerk() + "\tNaam: "
-						+ product.getNaam() + "\tVolume: " + product.getVolume() + "\tPrijs: " + product.getPrijs()
-						+ "\tCode: " + product.getProductCode() + "\n");
+			if (product != null) {
+				if (product.getClass().equals(Parfum.class)) {
+					System.out.println(product.getProductNummer() + "\tMerk: " + product.getMerk() + "\tNaam: "
+							+ product.getNaam() + "\tVolume: " + product.getVolume() + "\tPrijs: " + product.getPrijs()
+							+ "\tCode: " + product.getProductCode() + "\n");
+				}
 			}
 		}
 	}
@@ -82,8 +81,10 @@ public class Bestelling implements Berekenbaar {
 	public int getAantalProducten() {
 		int retvalue = 0;
 		for (Product product : arrProduct) {
-			if (product.getMerk() != "" || product.getMerk() != null) {
-				retvalue++;
+			if (product != null) {
+				if (product.getMerk() != "" || product.getMerk() != null) {
+					retvalue++;
+				}
 			}
 		}
 		return retvalue;

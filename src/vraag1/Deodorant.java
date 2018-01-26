@@ -3,9 +3,9 @@ package vraag1;
 public class Deodorant extends Product {
 	private DeoType soort;
 
-	public Deodorant(int PN, String m, String n, int v, double p, DeoType dt) {
-		super(PN, m, n, v, p);
-		setSoort(dt);
+	public Deodorant(int productNummer, String merk, String naam, int volume, double prijs, DeoType deoType) {
+		super(productNummer, merk, naam, volume, prijs);
+		setSoort(deoType);
 		// TODO Auto-generated constructor stub
 	}
 

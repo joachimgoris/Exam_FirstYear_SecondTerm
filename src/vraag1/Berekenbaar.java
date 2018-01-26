@@ -7,7 +7,7 @@ public interface Berekenbaar {
 	
 	public default double totalePrijsExclBtw() {
 		double retvalue;
-		retvalue = totalePrijs()*((100-BTW)/100);
+		retvalue = totalePrijs()/1.21;
 		return retvalue;
 	}
 }
